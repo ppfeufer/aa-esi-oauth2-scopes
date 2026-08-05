@@ -1,0 +1,49 @@
+name: Tests
+
+env:
+  NODE_VERSION: 26 # [LTS] End of Life: 30 Apr 2029 (https://endoflife.date/nodejs)
+
+on:
+  push:
+    branches:
+      - '**'
+
+    tags-ignore:
+      - '**'
+
+  pull_request:
+    branches:
+      - '**'
+
+    tags-ignore:
+      - '**'
+
+jobs:
+  # Run pre-commit Checks
+  pre-commit:
+    name: Pre Commit Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # Set up Python
+#      - name: Set up Python
+#        uses: actions/setup-python@v7
+#        with:
+#          python-version-file: 'pyproject.toml' # Read the Python version from the pyproject.toml file
+
+      # Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          # https://endoflife.date/nodejs
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+      - run: npm install
+
+      - name: Run Pre Commit Checks
+        uses: pre-commit/action@v3.0.1

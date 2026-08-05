@@ -1,0 +1,64 @@
+{% extends "aa_esi_oauth2_scopes/base.html" %}
+
+{% load i18n %}
+{% load sri %}
+
+{% block details %}
+    <div class="row">
+        <div class="col-md-5 col-lg-4 mb-3">
+            <div class="card position-sticky" style="top: 1rem;">
+
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {% translate "ESI OAuth2 Scopes" %} <small class="text-muted">{% translate "and what each scope unlocks" %}</small>
+                    </h5>
+
+                    <p>
+                        {% blocktrans with openapi_url="https://esi.evetech.net/meta/openapi.json" compat_dates_url="https://esi.evetech.net/meta/compatibility-dates" %}
+                            Parsed live from <a href="{{ openapi_url }}" target="_blank" rel="noopener">openapi.json</a>,
+                            requested with an <code>X-Compatibility-Date</code> header (see <a href="{{ compat_dates_url }}" target="_blank" rel="noopener">compatibility dates</a>),
+                            switch dates below to see how scopes and endpoints have changed over time.
+                            <br>
+                            Search for a scope name, an endpoint path, or a word from an endpoint's summary to find out which scope you need,
+                            or expand a scope to see every endpoint it unlocks.
+                        {% endblocktrans %}
+                    </p>
+
+                    <div id="scopes-status" class="alert alert-info" role="alert">{% translate "Loading scopes from ESI…" %}</div>
+
+                    <div id="scopes-controls-wrap" class="d-none">
+                        <form>
+                            <div class="mb-3">
+                                <label for="scopes-compat-date" class="form-label">{% translate "Compatibility date" %}</label>
+                                <select id="scopes-compat-date" class="form-select" aria-label="{% translate 'Select a compatibility date' %}"></select>
+                                <div class="form-text">{% translate "Select a compatibility date." %}</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="scopes-search" class="form-label">{% translate "Search" %}</label>
+                                <input
+                                    type="text"
+                                    id="scopes-search"
+                                    class="form-control"
+                                    placeholder='{% translate "Search…" %}'
+                                    autocomplete="off"
+                                >
+                                <div class="form-text">{% translate 'Search scopes or endpoints (e.g. "assets", "mail", "GetCharactersCharacterIdAssets").' %}</div>
+                            </div>
+                        </form>
+
+                        <p id="scopes-count" class="text-muted mt-3"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7 col-lg-8">
+            <div id="scopes-list" class="accordion"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_javascript %}
+    {% sri_static 'aa_esi_oauth2_scopes/js/esi-scopes.min.js' %}
+{% endblock %}
