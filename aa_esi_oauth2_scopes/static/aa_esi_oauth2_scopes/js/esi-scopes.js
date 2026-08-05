@@ -53,12 +53,36 @@ $(document).ready(() => {
     /**
      * Format a template string with named placeholders using the provided values.
      *
-     * @param {string} template - The template string with placeholders.
+     * @param {string|Object} template - The template string or object containing plural forms.
      * @param {Object} values - An object containing the values to replace in the template.
      * @returns {string} - The formatted string.
      */
-    const formatTemplateTranslation = (template, values) => {
-        return template.replace(/%\(([^)]+)\)s/g, (_, key) => String(values[key] ?? ''));
+    const formatTemplateTranslation = (template, values = {}) => {
+        /**
+         * Render a template string by replacing placeholders with corresponding values.
+         *
+         * @param {string} tpl - The template string to render.
+         * @returns {string} - The rendered string.
+         */
+        const render = (tpl) => {
+            return String(tpl).replace(
+                /%\(([^)]+)\)s/g,
+                (_, key) => String(values[key] ?? '')
+            );
+        };
+
+        if (template && typeof template === 'object') {
+            // Support object/array plural forms:
+            // { singular: '...', plural: '...' } or ['singular', 'plural']
+            const count = Number(values.count ?? values.number ?? 0);
+            const singular = Array.isArray(template) ? template[0] : (template.singular ?? template.singular);
+            const plural = Array.isArray(template) ? template[1] : (template.plural ?? template.plural);
+            const chosen = (count === 1 ? singular : plural) ?? singular ?? plural ?? '';
+
+            return render(chosen);
+        }
+
+        return render(template);
     };
 
     /**
@@ -161,7 +185,7 @@ $(document).ready(() => {
             ? `<ul class="list-group">${endpointsToShow.map(endpointRowHtml).join('')}</ul>` // jshint ignore:line
             : `<div class="panel-body"><em class="text-muted">${aa_esi_oauth2_scopes_translations.no_endpoints_message}</em></div>`;
 
-        const accordionHeader = `<h2 class="accordion-header" id="panel-${panelId}-heading"><button class="accordion-button${!expanded ? ' collapsed' : ''}" type="button" data-bs-toggle="collapse" data-bs-target="#panel-${panelId}" aria-expanded="${expanded ? 'true' : 'false'}" aria-controls="panel-${panelId}"><code>${escapeHtml(scope.name)}</code> <span class="badge">${scope.endpoints.length} endpoint${scope.endpoints.length === 1 ? '' : 's'}</span></button></h2>`;
+        const accordionHeader = `<h2 class="accordion-header" id="panel-${panelId}-heading"><button class="accordion-button${!expanded ? ' collapsed' : ''}" type="button" data-bs-toggle="collapse" data-bs-target="#panel-${panelId}" aria-expanded="${expanded ? 'true' : 'false'}" aria-controls="panel-${panelId}"><code>${escapeHtml(scope.name)}</code>&nbsp;<span class="badge text-bg-secondary">${formatTemplateTranslation(aa_esi_oauth2_scopes_translations.endpoint_message, { count: scope.endpoints.length })}</span></button></h2>`;
         const accordionBody = `<div id="panel-${panelId}" class="accordion-collapse collapse${expanded ? ' show' : ''}" aria-labelledby="panel-${panelId}-heading"><div class="accordion-body">${body}</div></div>`;
 
         return (

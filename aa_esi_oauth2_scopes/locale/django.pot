@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI OAuth2 Scopes 0.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-oauth2-scopes/issues\n"
-"POT-Creation-Date: 2026-08-05 09:59+0200\n"
+"POT-Creation-Date: 2026-08-05 11:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,4 +126,14 @@ msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:74
 msgid "most recent"
+msgstr ""
+
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:75
+#, python-format
+msgid "%%(count)s endpoint"
+msgstr ""
+
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:76
+#, python-format
+msgid "%%(count)s endpoints"
 msgstr ""
