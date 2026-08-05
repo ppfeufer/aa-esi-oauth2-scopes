@@ -10,9 +10,13 @@ node_modules/
 *.tmp
 *.bak
 *.old
+*.gz
 __pycache__
 .coverage
 /coverage.xml
 alliance_auth.sqlite3
 
+/aa_esi_oauth2_scopes/locale/en/
+.esi-compatibility-date
+.make/myauth-path
 .make/config-overrides.ini
