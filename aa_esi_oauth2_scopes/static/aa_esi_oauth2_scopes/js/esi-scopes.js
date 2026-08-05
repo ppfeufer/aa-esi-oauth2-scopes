@@ -1,3 +1,5 @@
+/* global aa_esi_oauth2_scopes_translations */
+
 $(document).ready(() => {
     'use strict';
 
@@ -6,8 +8,11 @@ $(document).ready(() => {
     const EXPLORER_URL = 'https://developers.eveonline.com/api-explorer#/operations/';
     const CACHE_PREFIX = 'esiScopesOpenApiCache.v2.';
 
-    // Cache scopes/endpoints for a given date until 11:30 UTC to avoid hammering ESI on every visit.
-    // Compute milliseconds until the next occurrence of 11:30 UTC.
+    /**
+     * Compute the TTL for the cache in milliseconds until the next occurrence of 11:30 UTC.
+     *
+     * @type {number}
+     */
     const CACHE_TTL_MS = (() => {
         const now = new Date();
         // Construct today's 11:30 UTC
@@ -35,13 +40,37 @@ $(document).ready(() => {
 
     let currentScopes = null; // Built from the spec currently on screen, re-filtered on every keystroke
 
+    /**
+     * Escape HTML special characters in a string to prevent XSS.
+     *
+     * @param {string} s - The string to escape.
+     * @returns {*|jQuery} - The escaped string as HTML.
+     */
     const escapeHtml = (s) => {
         return $('<div>').text(s === null ? '' : s).html();
     };
 
-    // Builds scope -> [endpoint, ...] from the OpenAPI document.
-    // Every operation in ESI's spec requires at most one OAuth2 scope (never an AND of several),
-    // so a single security entry per operation is enough.
+    /**
+     * Format a template string with named placeholders using the provided values.
+     *
+     * @param {string} template - The template string with placeholders.
+     * @param {Object} values - An object containing the values to replace in the template.
+     * @returns {string} - The formatted string.
+     */
+    const formatTemplateTranslation = (template, values) => {
+        return template.replace(/%\(([^)]+)\)s/g, (_, key) => String(values[key] ?? ''));
+    };
+
+    /**
+     * Build a mapping of OAuth2 scopes to their associated endpoints from the OpenAPI specification.
+     *
+     * Builds scope -> [endpoint, ...] from the OpenAPI document.
+     * Every operation in ESI's spec requires at most one OAuth2 scope (never an AND of several),
+     * so a single security entry per operation is enough.
+     *
+     * @param {Object} spec - The OpenAPI specification object.
+     * @returns {Array} - An array of scope objects with their associated endpoints.
+     */
     const buildScopeMap = (spec) => {
         const oauth2 = ((spec.components || {}).securitySchemes || {}).OAuth2 || {};
         const declaredScopes = ((oauth2.flows || {}).authorizationCode || {}).scopes || {};
@@ -98,6 +127,12 @@ $(document).ready(() => {
         return list;
     };
 
+    /**
+     * Generate the HTML for a single endpoint row in the scope panel.
+     *
+     * @param {Object} endpoint - The endpoint object containing method, path, operationId, summary, and tags.
+     * @returns {`<li class='list-group-item'><span class='badge ${*} scope-method'>${*}</span> <code>${string|*|jQuery}</code>${string|string}</li>`|`<li class='list-group-item'><span class='badge bg-default scope-method'>${*}</span> <code>${string|*|jQuery}</code>${string|string}</li>`}
+     */
     const endpointRowHtml = (endpoint) => {
         const methodClass = METHOD_LABEL_CLASS[endpoint.method] || 'bg-default';
         const explorerLink = endpoint.operationId
@@ -112,11 +147,19 @@ $(document).ready(() => {
         );
     };
 
+    /**
+     * Generate the HTML for a scope panel, including its header and body with associated endpoints.
+     *
+     * @param {Object} scope - The scope object containing name and endpoints.
+     * @param {Array} endpointsToShow - The list of endpoints to display in the panel.
+     * @param {boolean} expanded - Whether the panel should be initially expanded.
+     * @returns {`<div class='accordion-item'>${string}${string}</div>`}
+     */
     const scopePanelHtml = (scope, endpointsToShow, expanded) => {
         const panelId = 'scope-panel-' + scope.name.replace(/[^a-zA-Z0-9]/g, '-');
         const body = endpointsToShow.length
             ? `<ul class="list-group">${endpointsToShow.map(endpointRowHtml).join('')}</ul>` // jshint ignore:line
-            : '<div class="panel-body"><em class="text-muted">No endpoints currently require this scope.</em></div>';
+            : `<div class="panel-body"><em class="text-muted">${aa_esi_oauth2_scopes_translations.no_endpoints_message}</em></div>`;
 
         const accordionHeader = `<h2 class="accordion-header" id="panel-${panelId}-heading"><button class="accordion-button${!expanded ? ' collapsed' : ''}" type="button" data-bs-toggle="collapse" data-bs-target="#panel-${panelId}" aria-expanded="${expanded ? 'true' : 'false'}" aria-controls="panel-${panelId}"><code>${escapeHtml(scope.name)}</code> <span class="badge">${scope.endpoints.length} endpoint${scope.endpoints.length === 1 ? '' : 's'}</span></button></h2>`;
         const accordionBody = `<div id="panel-${panelId}" class="accordion-collapse collapse${expanded ? ' show' : ''}" aria-labelledby="panel-${panelId}-heading"><div class="accordion-body">${body}</div></div>`;
@@ -126,10 +169,24 @@ $(document).ready(() => {
         );
     };
 
+    /**
+     * Check if a haystack string contains the query string, case-insensitively.
+     *
+     * @param {string} haystack - The string to search within.
+     * @param {string} q - The query string to search for.
+     * @returns {boolean} - True if the haystack contains the query, false otherwise.
+     */
     const matchesQuery = (haystack, q) => {
         return haystack.toLowerCase().indexOf(q) !== -1;
     };
 
+    /**
+     * Check if an endpoint matches the query string in any of its relevant fields (path, summary, operationId, or tags).
+     *
+     * @param {Object} endpoint - The endpoint object to check.
+     * @param {string} q - The query string to search for.
+     * @returns {boolean} - True if the endpoint matches the query, false otherwise.
+     */
     const endpointMatches = (endpoint, q) => {
         return matchesQuery(endpoint.path, q)
             || matchesQuery(endpoint.summary, q) // jshint ignore:line
@@ -137,6 +194,11 @@ $(document).ready(() => {
             || endpoint.tags.some((tag) => matchesQuery(tag, q)); // jshint ignore:line
     };
 
+    /**
+     * Render the scopes panel search result.
+     *
+     * @param {string} query - The search query string.
+     */
     const render = (query) => {
         if (!currentScopes) {
             return;
@@ -168,13 +230,32 @@ $(document).ready(() => {
             $list.append(scopePanelHtml(scope, matchingEndpoints, expanded));
         });
 
-        $('#scopes-count').text('Showing ' + shown + ' of ' + currentScopes.length + ' scopes.');
+        $('#scopes-count').text(formatTemplateTranslation(
+            aa_esi_oauth2_scopes_translations.showing_scopes_message,
+            {
+                number: shown,
+                total: currentScopes.length
+            }
+        ));
 
         if (shown === 0) {
-            $list.html(`<p class="text-muted">No scopes or endpoints match &ldquo;${escapeHtml(query)}&rdquo;.</p>`);
+            const translatedText = formatTemplateTranslation(
+                aa_esi_oauth2_scopes_translations.no_match_message,
+                {
+                    query: query
+                }
+            );
+
+            $list.html(`<p class="text-muted">${translatedText}</p>`);
         }
     };
 
+    /**
+     * Show the specification for a given date.
+     *
+     * @param {Object} spec - The OpenAPI specification object.
+     * @param {string} date - The date of the specification.
+     */
     const showSpec = (spec, date) => {
         currentScopes = buildScopeMap(spec);
         const totalEndpoints = currentScopes.reduce((n, s) => n + s.endpoints.length, 0);
@@ -184,7 +265,14 @@ $(document).ready(() => {
             .show()
             .removeClass('alert-info alert-danger')
             .addClass('alert-success')
-            .text(`${currentScopes.length} scopes covering ${totalEndpoints} endpoints, for compatibility date ${date}`);
+            .text(formatTemplateTranslation(
+                aa_esi_oauth2_scopes_translations.scopes_count_message,
+                {
+                    current_scopes_length: currentScopes.length,
+                    total_endpoints: totalEndpoints,
+                    date: date
+                }
+            ));
         // .delay(2000)
         // .fadeOut(400);
 
@@ -193,15 +281,31 @@ $(document).ready(() => {
         render($('#scopes-search').val());
     };
 
+    /**
+     * Handle a failure to load the specification.
+     *
+     * @param {string} textStatus - The status text of the failure.
+     */
     const fail = (textStatus) => {
         $('#scopes-status')
             .stop(true, true)
             .show()
             .removeClass('alert-info alert-success')
             .addClass('alert-danger')
-            .text(`Could not load the ESI OpenAPI spec (${textStatus}). Try reloading the page.`);
+            .text(formatTemplateTranslation(
+                aa_esi_oauth2_scopes_translations.load_error_message,
+                {
+                    textstatus: textStatus
+                }
+            ));
     };
 
+    /**
+     * Get a cached specification for a given date.
+     *
+     * @param {string} date - The date of the specification.
+     * @returns {Object|null} The cached specification or null if not found.
+     */
     const cacheGet = (date) => {
         try {
             const cached = JSON.parse(localStorage.getItem(CACHE_PREFIX + date) || 'null');
@@ -216,6 +320,12 @@ $(document).ready(() => {
         return null;
     };
 
+    /**
+     * Cache a specification for a given date.
+     *
+     * @param {string} date - The date of the specification.
+     * @param {Object} spec - The OpenAPI specification object.
+     */
     const cacheSet = (date, spec) => {
         try {
             localStorage.setItem(CACHE_PREFIX + date, JSON.stringify({
@@ -227,6 +337,11 @@ $(document).ready(() => {
         }
     };
 
+    /**
+     * Load the specification for a given date.
+     *
+     * @param {string} date - The date of the specification.
+     */
     const loadSpecForDate = (date) => {
         const cached = cacheGet(date);
 
@@ -241,7 +356,12 @@ $(document).ready(() => {
             .show()
             .removeClass('alert-success alert-danger')
             .addClass('alert-info')
-            .text(`Loading scopes for compatibility date ${date}…`);
+            .text(formatTemplateTranslation(
+                aa_esi_oauth2_scopes_translations.loading_scopes_message,
+                {
+                    date: date
+                }
+            ));
 
         fetch(OPENAPI_URL, {
             headers: {
@@ -250,7 +370,13 @@ $(document).ready(() => {
         })
             .then((resp) => {
                 if (!resp.ok) {
-                    throw new Error(`Failed to load OpenAPI spec: ${resp.status} ${resp.statusText}`);
+                    throw new Error(formatTemplateTranslation(
+                        aa_esi_oauth2_scopes_translations.failed_load_spec_message,
+                        {
+                            status: resp.status,
+                            statustext: resp.statusText
+                        }
+                    ));
                 }
 
                 return resp.json();
@@ -264,11 +390,20 @@ $(document).ready(() => {
             });
     };
 
+    /**
+     * Initialize the compatibility dates dropdown.
+     */
     const initCompatDates = () => {
         fetch(COMPAT_DATES_URL)
             .then((resp) => {
                 if (!resp.ok) {
-                    throw new Error(`Failed to load compatibility dates: ${resp.status} ${resp.statusText}`);
+                    throw new Error(formatTemplateTranslation(
+                        aa_esi_oauth2_scopes_translations.failed_load_compatibility_dates_message,
+                        {
+                            status: resp.status, statustext:
+                            resp.statusText
+                        }
+                    ));
                 }
 
                 return resp.json();
@@ -277,7 +412,8 @@ $(document).ready(() => {
                 const dates = (data.compatibility_dates || []).slice().sort().reverse();
 
                 if (!dates.length) {
-                    fail('No compatibility dates returned');
+                    fail(aa_esi_oauth2_scopes_translations.no_compatibility_dates_message);
+
                     return;
                 }
 
@@ -285,7 +421,7 @@ $(document).ready(() => {
 
                 dates.forEach((date, i) => {
                     $select.append(
-                        $('<option>').val(date).text(date + (i === 0 ? ' (most recent)' : ''))
+                        $('<option>').val(date).text(date + (i === 0 ? ' (' + aa_esi_oauth2_scopes_translations.most_recent_message + ')' : ''))
                     );
                 });
 
@@ -296,12 +432,18 @@ $(document).ready(() => {
             });
     };
 
+    /**
+     * Handle a change in the compatibility dates dropdown.
+     */
     $('#scopes-compat-date').on('change', (event) => {
         const _this = event.target;
 
         loadSpecForDate($(_this).val());
     });
 
+    /**
+     * Handle input in the search field.
+     */
     $('#scopes-search').on('input', (event) => {
         const _this = event.target;
 

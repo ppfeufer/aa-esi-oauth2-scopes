@@ -60,5 +60,32 @@
 {% endblock %}
 
 {% block extra_javascript %}
+    {% comment %}Django translations for JavaScript are not available in the static files, so we need to pass them to the JS code here{% endcomment %}
+    {% translate "No endpoints currently require this scope." as no_endpoints_message %}
+    {% translate "%(current_scopes_length)s scopes covering %(total_endpoints)s endpoints, for compatibility date %(date)s" as scopes_count_message %}
+    {% translate "Showing %(number)s of %(total)s scopes." as showing_scopes_message %}
+    {% translate 'No scopes or endpoints match "%(query)s".' as no_match_message %}
+    {% translate "Could not load the ESI OpenAPI specs (%(textstatus)s). Try reloading the page." as load_error_message %}
+    {% translate "Loading scopes for compatibility date %(date)s…" as loading_scopes_message %}
+    {% translate "Failed to load OpenAPI specs: %(status)s %(statustext)s" as failed_load_spec_message %}
+    {% translate "Failed to load compatibility dates: %(status)s %(statustext)s" as failed_load_compatibility_dates_message %}
+    {% translate "No compatibility dates returned!" as no_compatibility_dates_message %}
+    {% translate "most recent" as most_recent_message %}
+
+    <script>
+        const aa_esi_oauth2_scopes_translations = {
+            no_endpoints_message: "{{ no_endpoints_message|escapejs }}",
+            scopes_count_message: "{{ scopes_count_message|escapejs }}",
+            showing_scopes_message: "{{ showing_scopes_message|escapejs }}",
+            no_match_message: "{{ no_match_message|escapejs }}",
+            load_error_message: "{{ load_error_message|escapejs }}",
+            loading_scopes_message: "{{ loading_scopes_message|escapejs }}",
+            failed_load_spec_message: "{{ failed_load_spec_message|escapejs }}",
+            failed_load_compatibility_dates_message: "{{ failed_load_compatibility_dates_message|escapejs }}",
+            no_compatibility_dates_message: "{{ no_compatibility_dates_message|escapejs }}",
+            most_recent_message: "{{ most_recent_message|escapejs }}"
+        };
+    </script>
+
     {% sri_static 'aa_esi_oauth2_scopes/js/esi-scopes.min.js' %}
 {% endblock %}
