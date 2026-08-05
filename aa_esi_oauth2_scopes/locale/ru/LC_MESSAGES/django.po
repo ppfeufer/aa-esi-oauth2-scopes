@@ -1,20 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Peter Pfeufer <info@ppfeufer.de>, 2026.
+# Languages add-on <noreply-addon-languages@weblate.ppfeufer.de>, 2026.
+# Automatic translation add-on <noreply-addon-autotranslate@weblate.ppfeufer.de>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI OAuth2 Scopes 0.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-oauth2-scopes/issues\n"
 "POT-Creation-Date: 2026-08-05 13:35+0200\n"
-"PO-Revision-Date: 2026-08-05 09:09+0000\n"
-"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
-"Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-oauth2-scopes/de/>\n"
-"Language: de\n"
+"PO-Revision-Date: 2026-08-05 11:43+0000\n"
+"Last-Translator: Automatic translation add-on <noreply-addon-autotranslate@weblate.ppfeufer.de>\n"
+"Language-Team: Russian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-oauth2-scopes/ru/>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2026.7.1\n"
 
 #: aa_esi_oauth2_scopes/auth_hooks.py:21
@@ -22,11 +23,11 @@ msgstr ""
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/base.html:10
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:13
 msgid "ESI OAuth2 Scopes"
-msgstr "ESI-OAuth2-Scopes"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:13
 msgid "and what each scope unlocks"
-msgstr "und was diese freischalten"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:17
 #, python-format
@@ -40,96 +41,88 @@ msgid ""
 "                            or expand a scope to see every endpoint it unlocks.\n"
 "                        "
 msgstr ""
-"\n"
-"                            Live aus <a href=\"%(openapi_url)s\" target=\"_blank\" rel=\"noopener\">openapi.json</a> geparst,\n"
-"angefordert mit einem <code>X-Compatibility-Date</code>-Header (siehe <a href=\"%(compat_dates_url)s\" target=\"_blank\" rel=\"noopener\">Kompatibilitätsdaten</a>);\n"
-"wechsle unten zwischen den Daten, um zu sehen, wie sich Scopes und Endpunkte im Laufe der Zeit verändert haben. \n"
-"<br>\n"
-"Suche nach einem Scope-Namen, einem Endpunkt-Pfad oder einem Wort aus der Zusammenfassung eines Endpunkts, um herauszufinden, welchen Scope Du benötigst,\n"
-"oder erweitere einen Scope, um alle Endpunkte zu sehen, die er freischaltet.\n"
-"                        "
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:27
 msgid "Loading scopes from ESI…"
-msgstr "Laden der Scopes von ESI…"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:32
 msgid "Compatibility date"
-msgstr "Kompatibilitätsdatum"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:33
 msgid "Select a compatibility date"
-msgstr "Wähle ein Kompatibilitätsdatum aus"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:34
 msgid "Select a compatibility date."
-msgstr "Wähle ein Kompatibilitätsdatum aus."
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:38
 msgid "Search"
-msgstr "Suche"
+msgstr "Поиск"
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:43
 msgid "Search…"
-msgstr "Suche…"
+msgstr "Поиск…"
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:46
 msgid "Search scopes or endpoints (e.g. \"assets\", \"mail\", \"GetCharactersCharacterIdAssets\")."
-msgstr "Durchsuche Scopes oder Endpunkte (z. B. „assets“, „mail“, „GetCharactersCharacterIdAssets“)."
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:65
 msgid "No endpoints currently require this scope."
-msgstr "Derzeit erfordert kein Endpunkt diesen Scope."
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:66
 #, python-format
 msgid "%%(current_scopes_length)s scopes covering %%(total_endpoints)s endpoints, for compatibility date %%(date)s"
-msgstr "%%(current_scopes_length)s Scopes für %%(total_endpoints)s Endpunkte, für das Kompatibilitätsdatum %%(date)s"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:67
 #, python-format
 msgid "Showing %%(number)s of %%(total)s scopes."
-msgstr "Zeige %%(number)s von %%(total)s Scopes."
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:68
 #, python-format
 msgid "No scopes or endpoints match \"%%(query)s\"."
-msgstr "Keine Scopes oder Endpunkte stimmen mit „%%(query)s“ überein."
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:69
 #, python-format
 msgid "Could not load the ESI OpenAPI specs (%%(textstatus)s). Try reloading the page."
-msgstr "Die ESI-OpenAPI-Spezifikationen konnten nicht geladen werden (%%(textstatus)s). Versuche, die Seite neu zu laden."
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:70
 #, python-format
 msgid "Loading scopes for compatibility date %%(date)s…"
-msgstr "Laden der Scopes für das Kompatibilitätsdatum %%(date)s…"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:71
 #, python-format
 msgid "Failed to load OpenAPI specs: %%(status)s %%(statustext)s"
-msgstr "OpenAPI-Spezifikationen konnten nicht geladen werden: %%(status)s %%(statustext)s"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:72
 #, python-format
 msgid "Failed to load compatibility dates: %%(status)s %%(statustext)s"
-msgstr "Fehler beim Laden der Kompatibilitätsdaten: %%(status)s %%(statustext)s"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:73
 msgid "No compatibility dates returned!"
-msgstr "Keine Kompatibilitätsdaten zurückgegeben!"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:74
 msgid "most recent"
-msgstr "neueste"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:75
 #, python-format
 msgid "%%(count)s endpoint"
-msgstr "%%(count)s Endpunkt"
+msgstr ""
 
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:76
 #, python-format
 msgid "%%(count)s endpoints"
-msgstr "%%(count)s Endpunkte"
+msgstr ""
