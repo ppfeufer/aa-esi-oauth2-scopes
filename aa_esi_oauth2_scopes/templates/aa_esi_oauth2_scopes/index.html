@@ -71,6 +71,8 @@
     {% translate "Failed to load compatibility dates: %(status)s %(statustext)s" as failed_load_compatibility_dates_message %}
     {% translate "No compatibility dates returned!" as no_compatibility_dates_message %}
     {% translate "most recent" as most_recent_message %}
+    {% translate "%(count)s endpoint" as endpoint_singular_message %}
+    {% translate "%(count)s endpoints" as endpoint_plural_message %}
 
     <script>
         const aa_esi_oauth2_scopes_translations = {
@@ -83,7 +85,11 @@
             failed_load_spec_message: "{{ failed_load_spec_message|escapejs }}",
             failed_load_compatibility_dates_message: "{{ failed_load_compatibility_dates_message|escapejs }}",
             no_compatibility_dates_message: "{{ no_compatibility_dates_message|escapejs }}",
-            most_recent_message: "{{ most_recent_message|escapejs }}"
+            most_recent_message: "{{ most_recent_message|escapejs }}",
+            endpoint_message: {
+                singular: "{{ endpoint_singular_message|escapejs }}",
+                plural: "{{ endpoint_plural_message|escapejs }}"
+            }
         };
     </script>
 
