@@ -1,4 +1,6 @@
-# ESI OAuth2 Scopes and what each scope unlocks
+# AA ESI OAuth2 Scopes
+
+### ESI OAuth2 Scopes and what each scope unlocks
 
 Alliance Auth App to show which ESI OAuth2 scopes unlock which endpoints.
 
