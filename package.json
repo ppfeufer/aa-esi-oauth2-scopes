@@ -1,5 +1,5 @@
 {
-    "name": "aa-esi-oauth2-scopes",
+    "name": "@ppfeufer/aa-esi-oauth2-scopes",
     "version": "0.0.1",
     "type": "module",
     "devDependencies": {
