@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI OAuth2 Scopes\n"
 "Report-Msgid-Bugs-To: https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-oauth2-scopes/\n"
-"POT-Creation-Date: 2026-09-08 15:56+0200\n"
+"POT-Creation-Date: 2026-09-09 10:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: aa_esi_oauth2_scopes/auth_hooks.py:21
+#: aa_esi_oauth2_scopes/auth_hooks.py:26
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/base.html:6
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/base.html:10
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:13

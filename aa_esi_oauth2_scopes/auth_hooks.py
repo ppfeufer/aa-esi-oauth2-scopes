@@ -12,10 +12,15 @@ from aa_esi_oauth2_scopes import urls
 
 
 class AAESIOAuth2ScopesMenuItem(MenuItemHook):
-    """This class ensures only authorized users will see the menu entry"""
+    """
+    Menu item for the AA ESI OAuth2 Scopes app
+    """
 
     def __init__(self):
-        # setup menu entry for sidebar
+        """
+        Initialize the menu item
+        """
+
         MenuItemHook.__init__(
             self,
             _("ESI OAuth2 Scopes"),
@@ -25,20 +30,33 @@ class AAESIOAuth2ScopesMenuItem(MenuItemHook):
         )
 
     def render(self, request):
-        """Render the menu item"""
+        """
+        Render the menu item
+
+        :param request:
+        :return:
+        """
 
         return MenuItemHook.render(self, request)
 
 
 @hooks.register("menu_item_hook")
 def register_menu():
-    """Register the menu item"""
+    """
+    Register the menu item for the AA ESI OAuth2 Scopes app
+
+    :return:
+    """
 
     return AAESIOAuth2ScopesMenuItem()
 
 
 @hooks.register("url_hook")
 def register_urls():
-    """Register app urls"""
+    """
+    Register app urls
+
+    :return:
+    """
 
     return UrlHook(urls, "aa_esi_oauth2_scopes", r"^esi-oauth2-scopes/")

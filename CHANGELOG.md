@@ -49,6 +49,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Added
+
+- Tests
+
 ## [0.0.1] - 2026-08-05
 
 ### Added

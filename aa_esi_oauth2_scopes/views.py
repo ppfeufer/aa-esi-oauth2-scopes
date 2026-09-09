@@ -1,4 +1,6 @@
-"""App Views"""
+"""
+Views for the aa_esi_oauth2_scopes app
+"""
 
 # Django
 from django.contrib.auth.decorators import login_required
@@ -11,6 +13,7 @@ from django.shortcuts import render
 def index(request: WSGIRequest) -> HttpResponse:
     """
     Index view
+
     :param request:
     :return:
     """
