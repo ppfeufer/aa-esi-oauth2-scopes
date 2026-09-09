@@ -4,12 +4,13 @@
 from django.apps import AppConfig
 
 # AA ESI OAuth2 Scopes
-# AA ESI OAuth2 Scopes App
 from aa_esi_oauth2_scopes import __version__
 
 
 class AAESIOAuth2ScopesConfig(AppConfig):
-    """App Config"""
+    """
+    App configuration for the AA ESI OAuth2 Scopes app
+    """
 
     name = "aa_esi_oauth2_scopes"
     label = "aa_esi_oauth2_scopes"

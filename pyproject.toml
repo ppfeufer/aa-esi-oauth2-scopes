@@ -41,6 +41,9 @@ dynamic = [
 dependencies = [
     "allianceauth>=5",
 ]
+optional-dependencies.tests-allianceauth-latest = [
+    "coverage",
+]
 urls.Changelog = "https://github.com/ppfeufer/aa-esi-oauth2-scopes/blob/master/CHANGELOG.md"
 urls.Tracker = "https://github.com/ppfeufer/aa-esi-oauth2-scopes/issues"
 
