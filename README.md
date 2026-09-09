@@ -26,3 +26,14 @@ is not meant to be installed in production, but rather to be used as a reference
 for developers.
 
 Inspired by Steve Ronuken's [Fuzzworks version](https://www.fuzzwork.co.uk/scopes/).
+
+## Translation Status
+
+[![Translation status](https://weblate.ppfeufer.de/widget/alliance-auth-apps/aa-esi-oauth2-scopes/matrix-auto.svg)](https://weblate.ppfeufer.de/engage/alliance-auth-apps/)
+
+Do you want to help translate this app into your language or improve the existing
+translation? - [Join our team of translators][weblate engage]!
+
+<!-- Links -->
+
+[weblate engage]: https://weblate.ppfeufer.de/engage/alliance-auth-apps/ "Weblate Translations"
