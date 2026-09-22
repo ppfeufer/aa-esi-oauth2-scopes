@@ -185,8 +185,18 @@ $(document).ready(() => {
             ? `<ul class="list-group">${endpointsToShow.map(endpointRowHtml).join('')}</ul>` // jshint ignore:line
             : `<div class="panel-body"><em class="text-muted">${aa_esi_oauth2_scopes_translations.no_endpoints_message}</em></div>`;
 
-        const accordionHeader = `<h2 class="accordion-header" id="panel-${panelId}-heading"><button class="accordion-button${!expanded ? ' collapsed' : ''}" type="button" data-bs-toggle="collapse" data-bs-target="#panel-${panelId}" aria-expanded="${expanded ? 'true' : 'false'}" aria-controls="panel-${panelId}"><code>${escapeHtml(scope.name)}</code>&nbsp;<span class="badge text-bg-secondary">${formatTemplateTranslation(aa_esi_oauth2_scopes_translations.endpoint_message, { count: scope.endpoints.length })}</span></button></h2>`;
-        const accordionBody = `<div id="panel-${panelId}" class="accordion-collapse collapse${expanded ? ' show' : ''}" aria-labelledby="panel-${panelId}-heading"><div class="accordion-body">${body}</div></div>`;
+        // Accordion header
+        const headerId = `panel-${panelId}-heading`;
+        const buttonClass = `accordion-button${!expanded ? ' collapsed' : ''}`;
+        const dataBsTarget = `#panel-${panelId}`;
+        const ariaExpanded = expanded ? 'true' : 'false';
+        const ariaControls = `panel-${panelId}`;
+        const code = `<code>${escapeHtml(scope.name)}</code>`;
+        const spanBadge = `<span class="badge text-bg-secondary">${formatTemplateTranslation(aa_esi_oauth2_scopes_translations.endpoint_message, {count: scope.endpoints.length})}</span>`;
+        const accordionHeaderButton = `<button class="${buttonClass}" type="button" data-bs-toggle="collapse" data-bs-target="${dataBsTarget}" aria-expanded="${ariaExpanded}" aria-controls="${ariaControls}">${code}&nbsp;${spanBadge}</button>`;
+
+        const accordionHeader = `<h2 class="accordion-header" id="${headerId}">${accordionHeaderButton}</h2>`;
+        const accordionBody = `<div id="panel-${panelId}" class="accordion-collapse collapse${expanded ? ' show' : ''}" aria-labelledby="${headerId}"><div class="accordion-body">${body}</div></div>`;
 
         return (
             `<div class="accordion-item">${accordionHeader}${accordionBody}</div>`
