@@ -49,6 +49,12 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [0.0.3] - 2026-10-06
+
+### Changed
+
+- Translations updated
+
 ## [0.0.2] - 2026-09-09
 
 ### Added
@@ -69,4 +75,5 @@ Section Order:
 
 [0.0.1]: https://github.com/ppfeufer/aa-esi-oauth2-scopes/commits/v0.0.1 "v0.0.1"
 [0.0.2]: https://github.com/ppfeufer/aa-esi-oauth2-scopes/compare/v0.0.1...v0.0.2 "v0.0.2"
-[in development]: https://github.com/ppfeufer/aa-esi-oauth2-scopes/compare/v0.0.2...HEAD "In Development"
+[0.0.3]: https://github.com/ppfeufer/aa-esi-oauth2-scopes/compare/v0.0.2...v0.0.3 "v0.0.3"
+[in development]: https://github.com/ppfeufer/aa-esi-oauth2-scopes/compare/v0.0.3...HEAD "In Development"
