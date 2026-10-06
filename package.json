@@ -1,6 +1,6 @@
 {
     "name": "@ppfeufer/aa-esi-oauth2-scopes",
-    "version": "3.2.1",
+    "version": "0.0.3",
     "type": "module",
     "devDependencies": {
         "@eslint/js": "^10.0.1",
