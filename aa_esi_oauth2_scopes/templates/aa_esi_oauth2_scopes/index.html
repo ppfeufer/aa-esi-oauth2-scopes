@@ -1,7 +1,6 @@
 {% extends "aa_esi_oauth2_scopes/base.html" %}
 
-{% load i18n %}
-{% load sri %}
+{% load i18n sri %}
 
 {% block details %}
     <div class="row">
@@ -14,14 +13,14 @@
                     </h5>
 
                     <p>
-                        {% blocktrans with openapi_url="https://esi.evetech.net/meta/openapi.json" compat_dates_url="https://esi.evetech.net/meta/compatibility-dates" %}
+                        {% blocktranslate with openapi_url="https://esi.evetech.net/meta/openapi.json" compat_dates_url="https://esi.evetech.net/meta/compatibility-dates" %}
                             Parsed live from <a href="{{ openapi_url }}" target="_blank" rel="noopener">openapi.json</a>,
                             requested with an <code>X-Compatibility-Date</code> header (see <a href="{{ compat_dates_url }}" target="_blank" rel="noopener">compatibility dates</a>),
                             switch dates below to see how scopes and endpoints have changed over time.
                             <br>
                             Search for a scope name, an endpoint path, or a word from an endpoint's summary to find out which scope you need,
                             or expand a scope to see every endpoint it unlocks.
-                        {% endblocktrans %}
+                        {% endblocktranslate %}
                     </p>
 
                     <div id="scopes-status" class="alert alert-info" role="alert">{% translate "Loading scopes from ESI…" %}</div>
@@ -57,7 +56,7 @@
             <div id="scopes-list" class="accordion"></div>
         </div>
     </div>
-{% endblock %}
+{% endblock details %}
 
 {% block extra_javascript %}
     {% comment %}Django translations for JavaScript are not available in the static files, so we need to pass them to the JS code here{% endcomment %}
@@ -94,4 +93,4 @@
     </script>
 
     {% sri_static 'aa_esi_oauth2_scopes/js/esi-scopes.min.js' %}
-{% endblock %}
+{% endblock extra_javascript %}
