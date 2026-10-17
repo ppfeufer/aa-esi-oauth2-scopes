@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI OAuth2 Scopes\n"
 "Report-Msgid-Bugs-To: https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-oauth2-scopes/\n"
-"POT-Creation-Date: 2026-10-06 10:02+0200\n"
+"POT-Creation-Date: 2026-10-09 12:05+0200\n"
 "PO-Revision-Date: 2026-09-16 08:54+0000\n"
 "Last-Translator: s0k0l -_- <salarysalo@gmail.com>\n"
 "Language-Team: Ukrainian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-oauth2-scopes/uk/>\n"
@@ -22,15 +22,15 @@ msgstr ""
 #: aa_esi_oauth2_scopes/auth_hooks.py:26
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/base.html:6
 #: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/base.html:10
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:13
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:12
 msgid "ESI OAuth2 Scopes"
 msgstr "Компоненти ESI OAuth2"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:13
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:12
 msgid "and what each scope unlocks"
 msgstr "та що кожний розділ розблокує"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:17
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:16
 #, python-format
 msgid ""
 "\n"
@@ -56,87 +56,87 @@ msgstr ""
 "                            або розверніть скоуп щоб побачити ендпойнти які він розблоковує.\n"
 "                        "
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:27
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:26
 msgid "Loading scopes from ESI…"
 msgstr "Завантаження скоупів з ESI…"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:32
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:31
 msgid "Compatibility date"
 msgstr "Дата сумісності"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:33
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:32
 msgid "Select a compatibility date"
 msgstr "Оберіть дату сумісності"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:34
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:33
 msgid "Select a compatibility date."
 msgstr "Оберіть дату сумісності."
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:38
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:37
 msgid "Search"
 msgstr "Пошук"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:43
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:42
 msgid "Search…"
 msgstr "Пошук…"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:46
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:45
 msgid "Search scopes or endpoints (e.g. \"assets\", \"mail\", \"GetCharactersCharacterIdAssets\")."
 msgstr "Оберіть скоупи або ендпойнти (такі як \"assets\", \"mail\", \"GetCharactersCharacterIdAssets\")."
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:65
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:64
 msgid "No endpoints currently require this scope."
 msgstr "Нема ендпойнтів у цьому скоупі."
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:66
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:65
 #, python-format
 msgid "%%(current_scopes_length)s scopes covering %%(total_endpoints)s endpoints, for compatibility date %%(date)s"
 msgstr "%%(current_scopes_length)s скоупи покривають %%(total_endpoints)s ендпойнтів, для дати сумісності %%(date)s"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:67
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:66
 #, python-format
 msgid "Showing %%(number)s of %%(total)s scopes."
 msgstr "Показано %%(number)s з %%(total)s скоупів."
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:68
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:67
 #, python-format
 msgid "No scopes or endpoints match \"%%(query)s\"."
 msgstr "Нема скоупів або ендпойнтів що відповідають запиту пошуку \"%%(query)s\"."
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:69
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:68
 #, python-format
 msgid "Could not load the ESI OpenAPI specs (%%(textstatus)s). Try reloading the page."
 msgstr "НЕ вдалось завантажити специфікацію ESI OpenAPI (%%(textstatus)s). Спробуйте перезавантажити сторінку."
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:70
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:69
 #, python-format
 msgid "Loading scopes for compatibility date %%(date)s…"
 msgstr "Завантаження скоупів для дати сумісності date %%(date)s…"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:71
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:70
 #, python-format
 msgid "Failed to load OpenAPI specs: %%(status)s %%(statustext)s"
 msgstr "Невчача завантаження специфікації OpenAPI: %%(status)s %%(statustext)s"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:72
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:71
 #, python-format
 msgid "Failed to load compatibility dates: %%(status)s %%(statustext)s"
 msgstr "Невдача завантаження дат сумісності: %%(status)s %%(statustext)s"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:73
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:72
 msgid "No compatibility dates returned!"
 msgstr "Не повернуто дат сумісності!"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:74
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:73
 msgid "most recent"
 msgstr "нещодавнє"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:75
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:74
 #, python-format
 msgid "%%(count)s endpoint"
 msgstr "%%(count)s ендпойнтів"
 
-#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:76
+#: aa_esi_oauth2_scopes/templates/aa_esi_oauth2_scopes/index.html:75
 #, python-format
 msgid "%%(count)s endpoints"
 msgstr "%%(count)s ендпойнти"
