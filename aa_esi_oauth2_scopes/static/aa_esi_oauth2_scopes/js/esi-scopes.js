@@ -434,8 +434,8 @@ $(document).ready(() => {
                     throw new Error(formatTemplateTranslation(
                         aa_esi_oauth2_scopes_translations.failed_load_compatibility_dates_message,
                         {
-                            status: resp.status, statustext:
-                            resp.statusText
+                            status: resp.status,
+                            statustext: resp.statusText
                         }
                     ));
                 }
